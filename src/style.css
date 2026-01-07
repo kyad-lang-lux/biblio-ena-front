@@ -1189,7 +1189,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--color-gray-border);
+    border: 2px solid var(--color-gray-border);
     border-radius: 8px;
     padding: 10px 25px;
     margin-bottom: 10px;
@@ -2036,4 +2036,23 @@ main {
         flex-direction: column;
         gap: 10px;
     }
+
+
+.document-card {
+   
+   
+    display: flex;
+    border-radius: 8px;
+    padding: 5px 5px;
+    flex-direction: column;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-white);
+}
+
+.document-card {
+   
+    border: 2px solid #b6b7b9;
+    
+}
 }

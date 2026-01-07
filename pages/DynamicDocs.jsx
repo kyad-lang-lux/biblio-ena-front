@@ -32,7 +32,7 @@ const DynamicDocs = ({ type }) => {
               </div>
             </div>
           </div>
-          <button className="btn-consult">Consulter</button>
+          {/* <button className="btn-consult">Consulter</button> */}
         </div>
       ))}
     </>
