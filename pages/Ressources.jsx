@@ -15,7 +15,7 @@ const Ressources = () => {
     // Plus tard, ici on déclenchera la recherche réelle (API call ou filtrage local)
   }; 
   
-  // 3. Fonction pour le bouton Filtre
+  // 3. Fonction pour le bouton Filtre 
   const handleFilterClick = () => {
     alert('Le panneau de filtres sera implémenté ici !');
   };

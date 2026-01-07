@@ -23,7 +23,7 @@ const Accueil = () => {
           </div> 
         </div> 
       </section>
-
+<br />
       {/* HORAIRES & INFOS PRATIQUES */}
       <section className="info-section">
         <div className="info-grid">
