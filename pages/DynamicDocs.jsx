@@ -2,40 +2,56 @@ import React, { useState, useEffect } from 'react';
 
 const DynamicDocs = ({ type }) => {
   const [docs, setDocs] = useState([]);
+  const [loading, setLoading] = useState(true); // État de chargement
 
   useEffect(() => {
-    fetch(`https://biblio-ena1.onrender.com/api/documents/${type}`)
+    setLoading(true);
+    fetch(`https://biblio-ena1.onrender.com/api/documents/${type}`) // Remplace par ton URL Render
       .then(res => res.json())
-      .then(data => setDocs(data))
-      .catch(err => console.error(err));
+      .then(data => {
+        setDocs(data); 
+        setLoading(false); // Fin du chargement
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
   }, [type]);
 
-  const getDeweyLabel = (code) => {
-    const labels = ["Généralités", "Philosophie", "Religion", "Sciences Sociales", "Langues", "Sciences pures", "Sciences appliquées", "Arts", "Littérature", "Géographie & Histoire"];
-    return labels[code] || "Inconnu";
-  };
+  // TEXTE DE CHARGEMENT
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <i className="fa-solid fa-spinner fa-spin"></i> Chargement des documents...
+      </div>
+    );
+  }
 
-  if (docs.length === 0) return null;
+  if (docs.length === 0) return <p className="no-docs">Aucun document trouvé dans cette section.</p>;
 
   return (
     <>
-      {docs.map((doc) => (
-        <div key={doc.id} className="document-card dynamic-entry">
-          <div className="card-content-left">
-            <i className="fa-regular fa-file-lines doc-icon" style={{color: '#e67e22'}}></i>
-            <div className="doc-details">
-              <h3>{doc.titre}</h3>
-              <div className="doc-meta">
-                <span className="meta-item"><i className="fa-regular fa-user"></i> {doc.auteur}</span>
-                <span className="meta-item"><i className="fa-regular fa-calendar-days"></i> {doc.annee}</span>
-                <span className="meta-item category-tag" style={{background: '#062eb4'}}>Classe {doc.categorie} : {getDeweyLabel(doc.categorie)}</span>
+      {docs.map((doc) => {
+         const labels = ["Généralités", "Philosophie", "Religion", "Sciences Sociales", "Langues", "Sciences pures", "Sciences appliquées", "Arts", "Littérature", "Géographie & Histoire"];
+         return (
+          <div key={doc.id} className="document-card dynamic-entry">
+            <div className="card-content-left">
+              <i className="fa-regular fa-file-lines doc-icon" style={{color: '#e67e22'}}></i>
+              <div className="doc-details">
+                <h3>{doc.titre}</h3>
+                <div className="doc-meta">
+                  <span className="meta-item"><i className="fa-regular fa-user"></i> {doc.auteur}</span>
+                  <span className="meta-item"><i className="fa-regular fa-calendar-days"></i> {doc.annee}</span>
+                  <span className="meta-item category-tag">Classe {doc.categorie} : {labels[doc.categorie]}</span>
+                </div>
               </div>
             </div>
+            <button className="btn-consult">Consulter</button>
           </div>
-          {/* <button className="btn-consult">Consulter</button> */}
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 };
+
 export default DynamicDocs;
