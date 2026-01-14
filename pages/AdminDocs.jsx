@@ -14,7 +14,7 @@ const AdminDocs = () => {
   const fetchDocs = async () => {
     const response = await fetch(`${API_URL}/api/admin/all-documents`);
     const data = await response.json();
-    setDocs(data);
+    setDocs(data); 
   };
 
   const handleDelete = async (id) => {
