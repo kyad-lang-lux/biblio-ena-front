@@ -21,15 +21,6 @@ const Footer = () => {
             </p>
           </div>
           
-          <div className="footer-col">
-            <h3>Navigation</h3>
-            <ul className="footer-links">
-              <li><Link to="/">Accueil</Link></li>
-              <li><Link to="/ressources">Catalogue</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/contact">Contacts</Link></li>
-            </ul>
-          </div>
           
           <div className="footer-col contact-col">
             <h3>Contact</h3>
